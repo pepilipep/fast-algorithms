@@ -7,6 +7,8 @@
 #include <cmath>
 #include <unordered_map>
 
+using namespace std;
+
 class RMQPlusMinus{
 
     int *a;
@@ -23,7 +25,8 @@ public:
         
         n = _n;
         a = new int[n];
-        B = log2(n);
+        B = log2(n) / 2;
+        if(!B) B = 1;
         m = n / B;
         if(m * B != n){
             m ++;
@@ -48,7 +51,9 @@ public:
                 numD[i] += (a[i * B + j - 1] - a[i * B + j] + 1) / 2;
             }
             while(j < B){
+                numD[i] *= 2;
                 D[j] = D[j-1] + 1;
+                numD[i] += (a[i * B + j - 1] - a[i * B + j] + 1) / 2;
                 j++;
             }
             if(!rmqNaive.count(numD[i])){
@@ -85,10 +90,10 @@ public:
         if(a[y1] <= a[y2] && a[y1] <= a[y3]){
             return y1;
         }
-        if(a[y2] <= a[y3]){
-            return y2;
+        if(a[y3] <= a[y2]){
+            return y3;
         }
-        return y3;
+        return y2;
     }
 
 
