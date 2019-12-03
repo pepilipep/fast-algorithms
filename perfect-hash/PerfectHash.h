@@ -53,7 +53,7 @@ class PerfectHash{
         c[idx] = rand() % (p - 1) + 1;
         while(!checkAdmissible(idx)){
             H[idx].assign(curN * curN, -1);
-            c[idx] ++;
+            c[idx] = rand() % (p - 1) + 1;
         }
     }
 
