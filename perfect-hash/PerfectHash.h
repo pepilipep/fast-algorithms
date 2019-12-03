@@ -2,6 +2,7 @@
 #define PERFECTHASH_H
 
 #include <vector>
+#include <random>
 
 typedef long long ll;
 
@@ -49,6 +50,7 @@ class PerfectHash{
             return;
         }
         H[idx].assign(curN * curN, -1);
+        c[idx] = rand() % (p - 1) + 1;
         while(!checkAdmissible(idx)){
             H[idx].assign(curN * curN, -1);
             c[idx] ++;
@@ -58,12 +60,12 @@ class PerfectHash{
 public:
 
     PerfectHash(std::vector<ll> _S, ll _p) : n(_S.size()), p(_p){
-        C = 1;
+        C = rand() % (p - 1) + 1;
         S.assign(n, {});
         H.assign(n, {});
-        c.assign(n, 1);
+        c.assign(n, 0);
         while(!checkAdmissible2(_S)){
-            C ++;
+            C = rand() % (p - 1) + 1;
             S.assign(n, {});
         }
         for(int i = 0; i < n; i ++){

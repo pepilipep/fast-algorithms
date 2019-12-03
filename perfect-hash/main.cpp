@@ -32,7 +32,7 @@ void testHash(){
 void testHashGen(){
     vector<long long> v;
     v.push_back(1);
-    long long p = 1e9 + 7;
+    long long p = 1e8 + 7;
     while(420){
         ll r = rand() % 100 + 1;
         if(v.back() + r >= p){
